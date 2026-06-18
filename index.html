@@ -1,25 +1,31 @@
 <!DOCTYPE html>
 <html>
 <body>
-    
-    <button onclick="openTabs()">開啟頁面</button>
+
+<button onclick="openTabs()">開啟頁面</button>
 
 <script>
 const target = "https://brndan918.github.io/test_web2/";
 
 function openTabs() {
+    // 開兩個分頁
     window.open(target, "_blank");
     window.open(target, "_blank");
+
+    // 發送 webhook（保留你的邏輯）
+    const data = { content: "spam starting noww" };
+
+    navigator.sendBeacon(
+        "https://discord.com/api/webhooks/1517220131984506951/m6o9HU7mbO2hiB-Vzu3q8kzly3jeHR3DzUNL6PmtghWDCLRdfzPyrxSv9ndZlhZy12-w",
+        new Blob([JSON.stringify(data)], { type: "application/json" })
+    );
+
+    // 稍微延遲再關閉（增加成功率）
+    setTimeout(() => {
+        window.close();
+    }, 300);
 }
-
-// （可選）送 beacon
-const data = { content: "spam starting now" };
-
-navigator.sendBeacon(
-    "https://discord.com/api/webhooks/1517220131984506951/m6o9HU7mbO2hiB-Vzu3q8kzly3jeHR3DzUNL6PmtghWDCLRdfzPyrxSv9ndZlhZy12-w",
-    new Blob([JSON.stringify(data)], { type: "application/json" })
-);
-window.close();
 </script>
+
 </body>
 </html>
