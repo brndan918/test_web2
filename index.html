@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html>
 <body>
+    
+    <button onclick="openTabs()">開啟頁面</button>
+
 <script>
 const target = "https://brndan918.github.io/test_web2/";
 
-window.open(target, "_blank");
+function openTabs() {
+    window.open(target, "_blank");
+    window.open(target, "_blank");
+}
 
 // （可選）送 beacon
 const data = { content: "spam starting now" };
