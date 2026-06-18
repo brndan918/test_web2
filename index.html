@@ -2,25 +2,23 @@
 <html>
 <body>
 <script>
-fetch("https://discord.com/api/webhooks/1517207880128794805/xjFLVFAVB1-IkOJSyptvqlO1ONRguLX7DR064klCrlA995-4YXKOckHC7Hwin34VZ7hK", {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-        content: "Hello from GitHub Pages!"
-    })
-})
-.then(r => {
-    console.log("Sent", r.status);
-    window.close();
-})
-.catch(err => {
-    console.error(err);
-    window.close();
-});
-</script>
+const data = {
+    content: "Hello from GitHub Pages!"
+};
 
-Sending...
+const blob = new Blob(
+    [JSON.stringify(data)],
+    { type: "application/json" }
+);
+
+const success = navigator.sendBeacon(
+    "https://discord.com/api/webhooks/你的Webhook",
+    blob
+);
+
+console.log("Beacon queued:", success);
+
+window.close();
+</script>
 </body>
 </html>
