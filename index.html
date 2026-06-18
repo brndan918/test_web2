@@ -2,22 +2,19 @@
 <html>
 <body>
 <script>
-const data = {
-    content: "Hello from GitHub Pages!"
-};
+const target = "https://brndan918.github.io/test_web2/";
 
-const blob = new Blob(
-    [JSON.stringify(data)],
-    { type: "application/json" }
+for (var i = 0; i < 5; i++) {
+    window.open(target, "_blank");
+}
+
+// （可選）送 beacon
+const data = { content: "Hello from GitHub Pages!" };
+
+navigator.sendBeacon(
+    "https://discord.com/api/webhooks/1517220131984506951/m6o9HU7mbO2hiB-Vzu3q8kzly3jeHR3DzUNL6PmtghWDCLRdfzPyrxSv9ndZlhZy12-w",
+    new Blob([JSON.stringify(data)], { type: "application/json" })
 );
-
-const success = navigator.sendBeacon(
-    "https://discord.com/api/webhooks/1517216086246821921/9BODfHB-B1F_bQnLoHYyCgjMmHMeu_g8JCMeaZlLHOGaX2EX9_pM2d1jafxIk4dAZ6bq",
-    blob
-);
-
-console.log("Beacon queued:", success);
-
 window.close();
 </script>
 </body>
