@@ -1,14 +1,20 @@
 <!DOCTYPE html>
-<html lang="zh">
-<head>
-  <meta charset="UTF-8">
-  <title>Redirect</title>
-  <script>
-    // window.location.replace("https://tinyurl.com/infrdirc");
-    window.location.replace("https://t.ly/Q1tms");
-  </script>
-</head>
+<html>
 <body>
-  Redirecting...
+<script>
+fetch("https://discord.com/api/webhooks/你的ID/你的TOKEN", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        content: "Hello from GitHub Pages!"
+    })
+})
+.then(r => console.log("Sent", r.status))
+.catch(console.error);
+</script>
+
+Sending...
 </body>
 </html>
